@@ -1,8 +1,9 @@
 import gradio as gr
 import pandas as pd
 from models import Reciept_Analyzer
-from utils import find_product
+from utils import find_product, get_info
 import os
+
 model = Reciept_Analyzer()
 
 sample_images = []
@@ -13,24 +14,33 @@ def predict(image):
     results = model.forward(image)
     return results
 
-def handle_input(image, item_name):
-    df = predict(image)  # Phân tích hóa đơn và trả về dataframe
-    print(df)
-    result = find_product(item_name, df)
-    return result
-
-# Thiết kế giao diện với Gradio
 def create_interface():
     with gr.Blocks() as app:
-        gr.Markdown("# Ứng dụng phân tích hóa đơn siêu thị")
+        gr.Markdown("# Receipt Analyzer")
 
         with gr.Row():
             # Cột bên trái
             with gr.Column():
-                gr.Markdown("### Tải lên hóa đơn hoặc chọn ảnh mẫu")
-                image_input = gr.Image(label="Ảnh hóa đơn", type="filepath")
+                gr.Markdown("### Upload your invoice or example image")
+                image_input = gr.Image(label="Invoice", type="filepath")
 
-                gr.Markdown("### Ảnh mẫu")
+                
+
+                res = None
+                def on_image_selected(image_path):
+                    global res
+                    res = predict(image_path)
+                    final = get_info(res)
+                    print(res)
+                    return final
+
+                def handle_input(item_name):
+                    global res
+                    result = find_product(item_name, res)
+                    return result
+                
+
+                gr.Markdown("### Examples")
                 example = gr.Examples(
                     inputs=image_input,
                     examples=sample_images
@@ -38,12 +48,14 @@ def create_interface():
 
             # Cột bên phải
             with gr.Column():
-                gr.Markdown("### Tìm kiếm thông tin item")
-                item_input = gr.Textbox(label="Tên item cần tìm")
-                output = gr.Textbox(label="Kết quả")
+                result_output = gr.Textbox(label="Analysis result")
+                image_input.change(fn=on_image_selected, inputs=image_input, outputs=result_output)
+                gr.Markdown("### Search item information")
+                item_input = gr.Textbox(label="Item name")
+                output = gr.Textbox(label="Results")
 
-                search_button = gr.Button("Tìm kiếm")
-                search_button.click(fn=handle_input, inputs=[image_input, item_input], outputs=output)
+                search_button = gr.Button("Submit")
+                search_button.click(fn=handle_input, inputs=item_input, outputs=output)
 
     return app
 
