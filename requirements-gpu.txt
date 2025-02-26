@@ -7,3 +7,4 @@ huggingface-hub==0.27.1
 datasets==2.10.0
 seqeval==1.2.2
 transformers==4.48.1
+gdown
