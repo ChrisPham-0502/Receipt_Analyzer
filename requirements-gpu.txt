@@ -1,0 +1,9 @@
+torch==2.6.0+cu118 --index-url https://download.pytorch.org/whl/cu118
+torchvision==0.21.0+cu118 --index-url https://download.pytorch.org/whl/cu118
+gradio==5.18.0
+vietocr==0.3.13
+ultralytics==8.3.65
+huggingface-hub==0.27.1
+datasets==2.10.0
+seqeval==1.2.2
+transformers==4.48.1
