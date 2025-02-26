@@ -138,3 +138,42 @@ def find_product(product_name, df):
         return "Không tìm thấy item nào phù hợp."
     #return result = product_df['text'].str.contains(product_name, case=False, na=False).any()
     #return product_df[product_df['text'].str.contains(product_name, case=False, na=False)]
+
+
+def get_info(df):
+    try:
+        shop_name = df.loc[df['class_label'] == 'SHOP_NAME', 'text'].iloc[0]
+    except:
+        print("Error: cannot find shop name")
+        shop_name = ''
+    print("Tên siêu thị: ", shop_name)
+
+    try:
+        addr = df.loc[df['class_label'] == 'ADDR', 'text'].iloc[0]
+    except:
+        print("Error: cannot find address")
+        addr = ''
+    print("Địa chỉ: ", addr)
+
+    try:
+        bill_id = df.loc[df['class_label'] == 'BILLID', 'text'].iloc[0]
+    except:
+        print("Error: cannot find bill id")
+        bill_id = ''
+    print("ID hóa đơn: ", bill_id)
+
+    try:
+        date_time = df.loc[df['class_label'] == 'DATETIME', 'text'].iloc[0]
+    except:
+        print("Error: cannot find date and time")
+        date_time = ''
+    print("Ngày: ", date_time)
+
+    try:
+        cashier = df.loc[df['class_label'] == 'CASHIER', 'text'].iloc[0]
+    except:
+        print("Error: cannot find cashier")
+        cashier = ''
+    print("Nhân viên: ", cashier)
+
+    return f"Tên siêu thị: {shop_name}\n Địa chỉ: {addr}\n ID hóa đơn: {bill_id}\n Ngày: {date_time}\n Nhân viên: {cashier}\n"
