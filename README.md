@@ -15,12 +15,20 @@ cd Receipt_Analayzer
 ```
 
 Before running the project, let's execute the following code to download the relevant checkpoints for each model.
+
+- YOLOv8 checkpoint:
 ```sh
 !gdown --fuzzy https://drive.google.com/file/d/1xy5gHWWtUdge5PdCJe0iXX_bIhzOuNoX/view?usp=sharing -O models/
+```
 
+- VietOCR checkpoints:
+```sh
 !gdown --fuzzy https://drive.google.com/file/d/1ho6GloAE1WowcncDTxnmyC23P4oPHa4M/view?usp=sharing -O models/vietocr/
 !unzip models/vietocr/vgg_transformer.zip -d models/vietocr/
+```
 
+- LayoutLMv3 checkpoints:
+```sh
 !gdown --fuzzy https://drive.google.com/file/d/1XJm3Se6qbnm-l82XNzWWbsHi2_PwYtMH/view?usp=sharing -O models/checkpoint/
 !unzip models/checkpoint/checkpoints.zip -d models/checkpoint/
 ```
