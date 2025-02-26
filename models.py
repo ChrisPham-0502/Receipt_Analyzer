@@ -21,6 +21,11 @@ class Reciept_Analyzer:
                  ):
         
         print("Initializing processor")
+        if torch.cuda.is_available():
+            print("Using GPU")
+        else:
+            print("No GPU detected, using CPU")
+
         self.processor = AutoProcessor.from_pretrained(
             processor_pretrained, apply_ocr=False)
         print("Finished initializing processor")
