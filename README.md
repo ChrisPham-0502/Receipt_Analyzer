@@ -14,6 +14,11 @@ Move to the project location:
 cd Receipt_Analayzer
 ```
 
+Then, install some necessary libraries:
+```sh
+!pip install -r requirements.txt
+```
+
 Before running the project, let's execute the following code to download the relevant checkpoints for each model.
 
 - YOLOv8 checkpoint:
@@ -33,12 +38,7 @@ Before running the project, let's execute the following code to download the rel
 !unzip models/checkpoint/checkpoints.zip -d models/checkpoint/
 ```
 
-Then, install some necessary libraries:
-```sh
-!pip install -r requirements.txt
-```
-
-  Finally, run the following code to inference:
+Finally, run the following code to inference:
 ```sh
 !python app.py
 ```
