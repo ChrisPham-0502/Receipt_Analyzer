@@ -1,6 +1,9 @@
 # Receipt Analyzer 
 
-This project demonstrates the OCR pipeline to extract the key information in Vietnamese supermarket invoices including name, address, order ID, purchased date and a list of purchased items. Besides, the pipeline also supports user to retrieve the desire item with its quantity and price. The project is composed of YOLOv8 - the state-of-the-art model for object detection - to localize the text region, VietOCR - a OCR model is trained on large Vietnamese text dataset - to recognize Vietnamese texts in detected regions, LayoutLMv3 - the modern and effective multimodal architecture in KIE task - to extract the key information.    
+This project demonstrates the OCR pipeline to extract the key information in Vietnamese supermarket invoices including name, address, order ID, purchased date and a list of purchased items. Besides, the pipeline also supports user to retrieve the desire item with its quantity and price. The project is composed of YOLOv8 - the state-of-the-art model for object detection - to localize the text region, VietOCR - a OCR model is trained on large Vietnamese text dataset - to recognize Vietnamese texts in detected regions, LayoutLMv3 - the modern and effective multimodal architecture in KIE task - to extract the key information.   
+
+![The workflow overview](https://github.com/user-attachments/assets/a288ddb7-2f40-49ad-8043-6aa34105f561)
+
 
 ## Guide to use
 
